@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
 using DevicesControlApp.Views;
@@ -68,7 +68,7 @@ namespace DevicesControlApp
 
                 // Tạo thiết bị mới
                 var newDevice = dialog.CreatedDevice;
-               
+
                 // Thêm vào DB
                 DatabaseHelper.AddDevice(newDevice);
 
@@ -76,7 +76,7 @@ namespace DevicesControlApp
                 // Thêm vào ObservableCollection, ListView sẽ tự cập nhật
                 foreach (var d in DatabaseHelper.GetDevices())
                     Devices.Add(d);
-                
+
             }
         }
 
@@ -139,53 +139,5 @@ namespace DevicesControlApp
             foreach (var d in DatabaseHelper.GetDevices())
                 Devices.Add(d);
         }
-
-
-=======
-﻿using System.Windows;
-
-namespace SmartHomeApp
-{
-    public partial class MainWindow : Window
-    {
-        private int devicesOn = 0;
-
-        public MainWindow()
-        {
-            InitializeComponent();
-            UpdateDevicesOnDisplay();
-        }
-
-        private void DeviceToggle_Checked(object sender, RoutedEventArgs e)
-        {
-            devicesOn++;
-            UpdateDevicesOnDisplay();
-        }
-
-        private void DeviceToggle_Unchecked(object sender, RoutedEventArgs e)
-        {
-            if (devicesOn > 0)
-                devicesOn--;
-            UpdateDevicesOnDisplay();
-        }
-
-        private void UpdateDevicesOnDisplay()
-        {
-            TextBlockDevicesOn.Text = devicesOn.ToString();
-        }
-
-        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
-        {
-
-        }
->>>>>>> 816cadd1116b24589676ff74d9c831cac1146d5e
     }
 }
-
-
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 816cadd1116b24589676ff74d9c831cac1146d5e
