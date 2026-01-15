@@ -9,14 +9,14 @@ namespace DevicesControlApp.Views
     public partial class ScheduleWindow : Window
     {
         private int _userID;
-
-        public ScheduleWindow(int userID)
+        private int _houseID;
+        public ScheduleWindow(int userID, int houseID)
         {
             InitializeComponent();
             _userID = userID;
-
+            _houseID = houseID;
             // Load devices vào ComboBox
-            List<Device> devices = DatabaseHelper.GetDevices();
+            List<Device> devices = DatabaseHelper.GetDevices(_houseID);
             cbDevices.ItemsSource = devices;
             cbDevices.DisplayMemberPath = "Name";
             cbDevices.SelectedValuePath = "ID";

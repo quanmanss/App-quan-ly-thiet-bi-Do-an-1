@@ -1,0 +1,34 @@
+﻿<Window x:Class="DevicesControlApp.Views.AddRoomWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DevicesControlApp.Views"
+        mc:Ignorable="d"
+        Title="AddRoomWindow" Height="450" Width="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Label -->
+        <TextBlock Text="Tên phòng"
+                   FontWeight="Bold"/>
+
+        <!-- TextBox nhập tên phòng -->
+        <TextBox x:Name="txtRoomName"
+                 Grid.Row="1"
+                 Margin="0,5,0,15"
+                 Height="28"/>
+
+        <!-- Button -->
+        <Button Grid.Row="2"
+                Content="Thêm phòng"
+                Height="35"
+                HorizontalAlignment="Right"
+                Width="120"
+                Click="AddRoom_Click"/>
+    </Grid>
+</Window>

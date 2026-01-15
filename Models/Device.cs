@@ -16,6 +16,12 @@ namespace DevicesControlApp.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+        public int RoomID { get; set; }
+
+        public string RoomName { get; set; }
+
+        // Memory-only
+        public bool IsOn { get; set; } = false;
         public string ButtonLabel { get; set; }
 
     }

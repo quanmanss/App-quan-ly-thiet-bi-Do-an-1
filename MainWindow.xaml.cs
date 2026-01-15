@@ -1,39 +1,49 @@
 
-﻿using System.Collections.ObjectModel;
-using System.Windows;
-using DevicesControlApp.Views;
-using DevicesControlApp.Models;
 using DevicesControlApp.Data;
+using DevicesControlApp.Models;
+using DevicesControlApp.Views;
+﻿using System.Collections.ObjectModel;
+using Microsoft.Data.SqlClient;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace DevicesControlApp
 {
     public partial class MainWindow : Window
     {
+        private int _houseId;
+        private int _userId;
         public ObservableCollection<Device> Devices { get; set; }
 
         DispatcherTimer scheduleTimer = new DispatcherTimer();
-        public MainWindow()
+        public MainWindow(int houseId, int userId)
         {
             InitializeComponent();
+            DataContext = this;
+            _houseId = houseId;
+            _userId = userId;
 
-            Devices = new ObservableCollection<Device>(DatabaseHelper.GetDevices());
-            DevicesList.ItemsSource = Devices;
+            Devices = new ObservableCollection<Device>(
+                DatabaseHelper.GetDevices(_houseId)
+               );
+     
+            LoadRooms();
 
-            //        {
-            //            new Device { Name = "Đèn phòng khách", Status = "Tắt", ButtonLabel = "Bật" },
-            //            new Device { Name = "Quạt trần", Status = "Tắt", ButtonLabel = "Bật" }
-            //        };
-
-            //        //  Gán vào ListView sau khi Devices đã có dữ liệu
-            //        DevicesList.ItemsSource = Devices;
-            //    }
 
             // Cau hinh timer chay moi 1 phut
             scheduleTimer.Interval = TimeSpan.FromSeconds(10);
             scheduleTimer.Tick += ScheduleTimer_Tick;
             scheduleTimer.Start();
 
+        }
+
+
+       private void LoadRooms()
+        {
+            var rooms = DatabaseHelper.GetRoomsByHouse(_houseId);
+            RoomsList.ItemsSource = rooms;
         }
 
         private void ScheduleTimer_Tick(object sender, EventArgs e)
@@ -53,14 +63,14 @@ namespace DevicesControlApp
 
                     // refresh UI
                     Devices.Clear();
-                    foreach (var d in DatabaseHelper.GetDevices())
+                    foreach (var d in DatabaseHelper.GetDevices(_houseId))
                         Devices.Add(d);
                 }
             }
         }
         private void AddDevice_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new AddDeviceWindow();
+            var dialog = new AddDeviceWindow(_houseId);
 
             // Hiển thị cửa sổ dưới dạng modal và kiểm tra kết quả
             if (dialog.ShowDialog() == true)
@@ -74,7 +84,7 @@ namespace DevicesControlApp
 
                 Devices.Clear(); // load lại DB
                 // Thêm vào ObservableCollection, ListView sẽ tự cập nhật
-                foreach (var d in DatabaseHelper.GetDevices())
+                foreach (var d in DatabaseHelper.GetDevices(_houseId))
                     Devices.Add(d);
 
             }
@@ -117,6 +127,11 @@ namespace DevicesControlApp
                 string newStatus = device.Status == "Bật" ? "Tắt" : "Bật";
                 device.Status = newStatus;
                 device.ButtonLabel = newStatus == "Bật" ? "Tắt" : "Bật";
+                device.IsOn = !device.IsOn;
+                var button = sender as Button;
+                button.Content = device.ButtonLabel;
+                button.Background = device.IsOn ? Brushes.Green : Brushes.Gray;
+                device.Status = device.IsOn ? "Bật" : "Tắt";
 
                 // Cập nhật DB
                 DatabaseHelper.UpdateStatus(device.ID, newStatus);
@@ -125,19 +140,41 @@ namespace DevicesControlApp
                 DevicesList.Items.Refresh();
             }
         }
+       
 
         private void BtnSchedule_Click(object sender, RoutedEventArgs e)
         {
-            int currentUserId = 1; // Thay bằng user hiện tại nếu có multi-user
+            
 
-            var scheduleWindow = new ScheduleWindow(currentUserId);
-            scheduleWindow.Owner = this; // đặt MainWindow là owner (modal)
+            var scheduleWindow = new ScheduleWindow(_userId, _houseId);
+            scheduleWindow.Owner = this; // đặt MainWindow là owner (modal), là cha của Schdule để khi mở thì khóa cha
             scheduleWindow.ShowDialog();
 
-            // Sau khi cửa sổ đóng, có thể refresh danh sách thiết bị nếu muốn
+            // Sau khi cửa sổ đóng, refresh danh sách thiết bị
             Devices.Clear();
-            foreach (var d in DatabaseHelper.GetDevices())
+            foreach (var d in DatabaseHelper.GetDevices(_houseId))
                 Devices.Add(d);
         }
+
+        private void DetailButton_Click(object sender, RoutedEventArgs e)
+        {
+            if ((sender as FrameworkElement)?.DataContext is Device selectedDevice)
+            {
+                var detailsWindow = new DeviceDetailsWindow(selectedDevice);
+                detailsWindow.ShowDialog();
+            }
+        }
+
+        private void AddRoom_Click(object sender, RoutedEventArgs e)
+        {
+            var addRoomWindow = new AddRoomWindow(_houseId);
+            if (addRoomWindow.ShowDialog() == true)
+            {
+                LoadRooms(); 
+            }
+
+        }
     }
+
+
 }

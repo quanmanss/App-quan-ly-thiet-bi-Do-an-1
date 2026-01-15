@@ -1,0 +1,38 @@
+﻿<Window x:Class="DevicesControlApp.Views.HouseSetupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DevicesControlApp.Views"
+        mc:Ignorable="d"
+        Title="HouseSetupWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="20">
+
+            <TextBlock Text="Select your role" FontSize="18" Margin="0 0 0 10"/>
+
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
+                <RadioButton x:Name="OwnerRadio" Content="Owner" Checked="RoleChanged" Margin="0 0 20 0"/>
+                <RadioButton x:Name="MemberRadio" Content="Member" Checked="RoleChanged"/>
+            </StackPanel>
+
+            <!-- OWNER FIELDS -->
+            <StackPanel x:Name="OwnerPanel" Visibility="Collapsed">
+                <TextBlock Text="House Name"/>
+                <TextBox x:Name="HouseNameBox" Margin="0 0 0 10"/>
+
+                <TextBlock Text="Location"/>
+                <TextBox x:Name="LocationBox" Margin="0 0 0 10"/>
+            </StackPanel>
+
+            <!-- MEMBER FIELDS -->
+            <StackPanel x:Name="MemberPanel" Visibility="Collapsed">
+                <TextBlock Text="Join Code"/>
+                <TextBox x:Name="JoinCodeBox" Margin="0 0 0 10"/>
+            </StackPanel>
+
+            <Button Content="Continue" Click="Continue_Click" Height="35" Margin="0 20 0 0"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

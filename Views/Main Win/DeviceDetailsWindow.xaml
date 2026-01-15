@@ -1,0 +1,21 @@
+﻿<Window x:Class="DevicesControlApp.Views.DeviceDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Chi tiết thiết bị" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Tên thiết bị:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Name}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Loại thiết bị:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Type}" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Mô tả:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Description}" TextWrapping="Wrap" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Trạng thái:" FontWeight="Bold"/>
+            <TextBlock Text="{Binding Status}" Margin="0,0,0,10"/>
+        </StackPanel>
+    </Grid>
+</Window>

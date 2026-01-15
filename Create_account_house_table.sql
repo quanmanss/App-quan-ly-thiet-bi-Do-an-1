@@ -1,0 +1,15 @@
+CREATE TABLE Account (
+    ID INT IDENTITY PRIMARY KEY,
+    Username NVARCHAR(50) UNIQUE NOT NULL,
+    Password NVARCHAR(200) NOT NULL
+);
+
+CREATE TABLE House(
+    ID INT IDENTITY PRIMARY KEY,
+    Name NVARCHAR(100) NOT NULL,
+    Location NVARCHAR(200) NOT NULL,
+    AccountID INT NOT NULL,
+    FOREIGN KEY (AccountID) REFERENCES Account(ID),
+    Latitude Float,
+    Longitude FLOAT
+);

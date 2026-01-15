@@ -1,0 +1,72 @@
+﻿<Window x:Class="DevicesControlApp.Views.AddDeviceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Quản lý thiết bị IoT" Height="500" Width="700"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Button Style -->
+        <Style x:Key="ColorfulButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="BorderBrush" Value="#FF388E3C"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!-- Cancel Button Style -->
+        <Style x:Key="CancelButton" TargetType="Button" BasedOn="{StaticResource ColorfulButton}">
+            <Setter Property="Background" Value="#FFF44336"/>
+            <Setter Property="BorderBrush" Value="#FFD32F2F"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="10">
+
+            <TextBlock Text="Tên thiết bị:"/>
+            <TextBox x:Name="txtName" Margin="0,5,0,10"/>
+
+            <TextBlock Text="Loại thiết bị:"/>
+            <TextBox x:Name="txtType" Margin="0,5,0,10"/>
+
+            <TextBlock Text="Mô tả:"/>
+            <TextBox x:Name="txtDescription" Margin="0,5,0,10"/>
+
+            <TextBlock Text="Phòng đặt thiết bị:"/>
+            
+            <ComboBox x:Name="RoomComboBox"
+                      DisplayMemberPath="Name"
+                      />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="0,10,0,0" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+            <Button Content="Hủy" Width="70" Margin="0,0,10,0" Click="Cancel_Click" Style="{StaticResource CancelButton}"/>
+            <StackPanel Margin="20"></StackPanel>
+            <Button Content="Thêm" Width="70" Click="AddDevice_Click" Style="{StaticResource ColorfulButton}"/>
+        </StackPanel>
+
+
+    </Grid>
+</Window>

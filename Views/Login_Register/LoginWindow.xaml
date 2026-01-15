@@ -1,0 +1,40 @@
+﻿<Window x:Class="DevicesControlApp.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DevicesControlApp.Views"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel Margin="20">
+
+            <!-- Username -->
+            <TextBlock Text="Username" Margin="0,0,0,5"/>
+            <TextBox x:Name="UsernameBox" Width="200" Margin="0,0,0,20"/>
+
+            <!-- Password -->
+            <TextBlock Text="Password" Margin="0,0,0,5"/>
+            <PasswordBox x:Name="PasswordBox" Width="200" Margin="0,0,0,20"/>
+
+            <!-- Buttons Row -->
+            <StackPanel Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            >
+                <Button x:Name="Login_btn" 
+            Padding="10"
+            FontSize="16"
+            Content="Đăng nhập"
+            Margin="0 0 20 0" Click="Login_btn_Click"/>
+
+                <Button x:Name="Register_btn" 
+            Padding="10"
+            FontSize="16"
+            Content="Đăng ký"
+            Click="Register_btn_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+
+    </Grid>
+</Window>
