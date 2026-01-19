@@ -22,7 +22,7 @@ namespace DevicesControlApp.Views
             cbDevices.SelectedValuePath = "ID";
 
             // Load action On/Off
-            cbAction.ItemsSource = new string[] { "On", "Off" };
+            cbAction.ItemsSource = new string[] { "Bật", "Tắt" };
             cbAction.SelectedIndex = 0;
         }
 

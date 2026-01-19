@@ -22,6 +22,13 @@ namespace DevicesControlApp.Views
             _houseId = houseId;
             var rooms = DatabaseHelper.GetRoomsByHouse(_houseId);
             RoomComboBox.ItemsSource = rooms;
+
+            TypeComboBox.Items.Add("Đèn");
+            TypeComboBox.Items.Add("Quạt");
+            TypeComboBox.Items.Add("TV");
+            TypeComboBox.Items.Add("Điều hòa");
+
+            TypeComboBox.SelectedIndex = 0;
         }
         private void AddDevice_Click(object sender, RoutedEventArgs e)
         {
@@ -31,19 +38,17 @@ namespace DevicesControlApp.Views
                 return;
             }
 
-            var dialog = new AddDeviceWindow(_houseId);
-
-
+        
             if (RoomComboBox.SelectedItem is not Room room)
             {
-                MessageBox.Show("Vui long chon phong!");
+                MessageBox.Show("Vui lòng chọn phòng!");
                 return;
             }
 
             CreatedDevice = new Device
             {
                 Name = txtName.Text,
-                Type = txtType.Text,
+                Type = TypeComboBox.SelectedItem.ToString(),
                 Description = txtDescription.Text,
                 Status = "Tắt",
                 CreatedAt = DateTime.Now,

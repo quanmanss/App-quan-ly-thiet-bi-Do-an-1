@@ -2,10 +2,12 @@
 using DevicesControlApp.Data;
 using DevicesControlApp.Models;
 using DevicesControlApp.Views;
-﻿using System.Collections.ObjectModel;
 using Microsoft.Data.SqlClient;
+﻿using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Threading;
 
@@ -28,7 +30,7 @@ namespace DevicesControlApp
             Devices = new ObservableCollection<Device>(
                 DatabaseHelper.GetDevices(_houseId)
                );
-     
+
             LoadRooms();
 
 
@@ -40,7 +42,8 @@ namespace DevicesControlApp
         }
 
 
-       private void LoadRooms()
+
+        private void LoadRooms()
         {
             var rooms = DatabaseHelper.GetRoomsByHouse(_houseId);
             RoomsList.ItemsSource = rooms;
@@ -55,11 +58,11 @@ namespace DevicesControlApp
                 if (s.Time <= now)
                 {
                     // thực hiện hành động
-                    string newStatus = s.Action == "On" ? "Bật" : "Tắt";
+                    string newStatus = s.Action == "Bật" ? "Bật" : "Tắt";
                     DatabaseHelper.UpdateStatus(s.DeviceID, newStatus);
 
                     // đánh dấu schedule đã xong
-                    DatabaseHelper.UpdateScheduleStatus(s.ID, "Done");
+                    DatabaseHelper.UpdateScheduleStatus(s.ID, "Hoàn tất");
 
                     // refresh UI
                     Devices.Clear();
@@ -140,11 +143,11 @@ namespace DevicesControlApp
                 DevicesList.Items.Refresh();
             }
         }
-       
+
 
         private void BtnSchedule_Click(object sender, RoutedEventArgs e)
         {
-            
+
 
             var scheduleWindow = new ScheduleWindow(_userId, _houseId);
             scheduleWindow.Owner = this; // đặt MainWindow là owner (modal), là cha của Schdule để khi mở thì khóa cha
@@ -170,11 +173,14 @@ namespace DevicesControlApp
             var addRoomWindow = new AddRoomWindow(_houseId);
             if (addRoomWindow.ShowDialog() == true)
             {
-                LoadRooms(); 
+                LoadRooms();
             }
 
         }
+
+  
+
+
+
     }
-
-
 }

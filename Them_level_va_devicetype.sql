@@ -1,0 +1,2 @@
+ALTER TABLE Device
+ADD Intensity INT DEFAULT 0;

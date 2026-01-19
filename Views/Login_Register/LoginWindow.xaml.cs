@@ -37,13 +37,13 @@ namespace DevicesControlApp.Views
                 {
                     MainWindow mainWindow = new MainWindow(houseId.Value, user.ID);
                     mainWindow.Show();
-                    MessageBox.Show($"Login successful! Welcome {user.Name}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Đăng nhập thành công, chào mừng {user.Name}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
 
                 else
                 {
-                    MessageBox.Show($"Login successful! Welcome {user.Name}", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show($"Đăng nhập thành công, chào mừng {user.Name}!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                     HouseSetupWindow houseWindow = new HouseSetupWindow(user);
                     houseWindow.Show();
                 }
@@ -52,7 +52,7 @@ namespace DevicesControlApp.Views
             }
             else
             {
-                MessageBox.Show("Login failed. Invalid username or password.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Đăng nhập thất bại. Tên đăng nhập hoặc mật khẩu không hợp lệ.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

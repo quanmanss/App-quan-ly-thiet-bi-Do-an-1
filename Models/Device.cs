@@ -20,7 +20,10 @@ namespace DevicesControlApp.Models
 
         public string RoomName { get; set; }
 
+        public int Intensity { get; set; }
+
         // Memory-only
+
         public bool IsOn { get; set; } = false;
         public string ButtonLabel { get; set; }
 

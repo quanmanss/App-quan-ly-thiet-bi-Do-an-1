@@ -49,13 +49,12 @@
             <TextBox x:Name="txtName" Margin="0,5,0,10"/>
 
             <TextBlock Text="Loại thiết bị:"/>
-            <TextBox x:Name="txtType" Margin="0,5,0,10"/>
+            <ComboBox x:Name="TypeComboBox" Margin="0,5,0,10"/>
 
             <TextBlock Text="Mô tả:"/>
             <TextBox x:Name="txtDescription" Margin="0,5,0,10"/>
 
             <TextBlock Text="Phòng đặt thiết bị:"/>
-            
             <ComboBox x:Name="RoomComboBox"
                       DisplayMemberPath="Name"
                       />
@@ -67,6 +66,6 @@
             <Button Content="Thêm" Width="70" Click="AddDevice_Click" Style="{StaticResource ColorfulButton}"/>
         </StackPanel>
 
-
+       
     </Grid>
 </Window>

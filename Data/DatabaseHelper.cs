@@ -236,5 +236,20 @@ namespace DevicesControlApp.Data
             }
         }
 
+        public static void UpdateDeviceIntensity(int deviceId, int intensity)
+        {
+            using var conn = GetConnection();
+
+            string sql = @"Update Device 
+                            Set Intensity = @Intensity,
+                                    UpdatedAt = Getdate()
+                                   Where ID = @ID";
+
+            conn.Execute(sql, new
+            {
+                Id = deviceId,
+                Intensity = intensity
+            });
+        }
     }
 }

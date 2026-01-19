@@ -16,6 +16,22 @@
 
             <TextBlock Text="Trạng thái:" FontWeight="Bold"/>
             <TextBlock Text="{Binding Status}" Margin="0,0,0,10"/>
+
+            <TextBlock x:Name="txtIntensityLabel"
+           FontWeight="Bold"
+           Margin="0,0,0,5"/>
+
+            <Slider x:Name="IntensitySlider"
+                Minimum="0"
+                Maximum="100"
+                Value="{Binding Intensity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                ValueChanged="IntensitySlider_ValueChanged"/>
+
+            <TextBlock Text="{Binding Intensity, StringFormat={}{0}%}"
+                       FontSize="12"
+                       Foreground="Green"
+                       HorizontalAlignment="Center"/>
+
         </StackPanel>
     </Grid>
 </Window>

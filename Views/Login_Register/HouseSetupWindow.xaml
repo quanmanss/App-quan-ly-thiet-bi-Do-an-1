@@ -9,29 +9,29 @@
     <Grid>
         <StackPanel Margin="20">
 
-            <TextBlock Text="Select your role" FontSize="18" Margin="0 0 0 10"/>
+            <TextBlock Text="Xin chào, hãy chọn vai trò của bạn trong nhà !" FontSize="18" Margin="0 0 0 10"/>
 
             <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                <RadioButton x:Name="OwnerRadio" Content="Owner" Checked="RoleChanged" Margin="0 0 20 0"/>
-                <RadioButton x:Name="MemberRadio" Content="Member" Checked="RoleChanged"/>
+                <RadioButton x:Name="OwnerRadio" Content="Chủ nhà - toàn quyền quyết định" Checked="RoleChanged" Margin="0 0 20 0"/>
+                <RadioButton x:Name="MemberRadio" Content="Thành viên - kiểm soát bởi chủ nhà" Checked="RoleChanged"/>
             </StackPanel>
 
             <!-- OWNER FIELDS -->
             <StackPanel x:Name="OwnerPanel" Visibility="Collapsed">
-                <TextBlock Text="House Name"/>
+                <TextBlock Text="Tên căn nhà của bạn"/>
                 <TextBox x:Name="HouseNameBox" Margin="0 0 0 10"/>
 
-                <TextBlock Text="Location"/>
+                <TextBlock Text="Địa chỉ"/>
                 <TextBox x:Name="LocationBox" Margin="0 0 0 10"/>
             </StackPanel>
 
             <!-- MEMBER FIELDS -->
             <StackPanel x:Name="MemberPanel" Visibility="Collapsed">
-                <TextBlock Text="Join Code"/>
+                <TextBlock Text="Mã gia nhập, hãy hỏi chủ nhà của bạn !"/>
                 <TextBox x:Name="JoinCodeBox" Margin="0 0 0 10"/>
             </StackPanel>
 
-            <Button Content="Continue" Click="Continue_Click" Height="35" Margin="0 20 0 0"/>
+            <Button Content="Tiếp tục" Click="Continue_Click" Height="35" Margin="0 20 0 0"/>
 
         </StackPanel>
     </Grid>
