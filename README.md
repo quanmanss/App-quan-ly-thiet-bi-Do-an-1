@@ -19,7 +19,12 @@ Cài dapper và micorosoft.data.sqlclient trong visual studio
 - Sửa lại toàn bộ code theo tiệm cận mô hình MVVM
 - Mapping toàn bộ dữ liệu vào Sql server local dùng dapper
 - Update hẹn giờ, thêm xóa thiết bị
-  
+
+# Bản 3.0: (cập nhật ngày 19/1/2026 ):
+- Sửa lại ngôn ngữ toàn bộ hệ thống thành Tiếng Việt, giải thích rõ hơn về vai trò cho người dùng lần đầu
+- Phân loại thiết bị thành: Điều hòa, quạt, đèn, TV -> chia ra các loại Intensity ( mới thêm vào Device trong db): âm lượng, mức quạt,...
+- Thêm icon minh họa thiết bị ở trang chủ, thêm dấu chấm đỏ, xanh thể hiện bật tắt
+- Các thứ cần làm tiếp theo: Thêm mã join cho thành viên, thêm location, detect wifi.
 # Công nghệ sử dụng:
 WPF và .NET framework
 Figma design thiết kế giao diện tương tác
